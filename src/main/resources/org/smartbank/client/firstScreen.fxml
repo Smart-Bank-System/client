@@ -10,7 +10,7 @@
    <children>
       <Label alignment="CENTER" layoutX="140.0" layoutY="81.0" prefHeight="161.0" prefWidth="999.0" text="Welcome" textFill="WHITE">
          <font>
-            <Font size="120.0" />
+            <Font size="120.0" name="Alegreya" />
          </font>
       </Label>
       <VBox alignment="CENTER" layoutX="315.0" layoutY="335.0" prefHeight="222.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="378.0">
