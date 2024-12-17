@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #E1E4E5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane layoutX="28.0" layoutY="27.0" prefHeight="475.0" prefWidth="1219.0" style="-fx-background-color: linear-gradient(to right, #557C93 0%, #1A262D 100%); -fx-background-radius: 15;">
+        <AnchorPane layoutX="28.0" layoutY="27.0" prefHeight="496.0" prefWidth="1028.0" style="-fx-background-color: linear-gradient(to right, #557C93 0%, #1A262D 100%); -fx-background-radius: 20;">
          <children>
-            <Label layoutX="90.0" layoutY="62.0" prefHeight="72.0" prefWidth="706.0" text="Account Balance">
+            <Label layoutX="90.0" layoutY="80.0" prefHeight="72.0" prefWidth="706.0" text="Account Balance" textFill="#f9bc2c">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
+            <Label layoutX="90.0" layoutY="144.0" prefHeight="133.0" prefWidth="738.0" text="127,869.23 TL" textFill="WHITE">
+               <font>
+                  <Font size="100.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="298.0" prefHeight="72.0" prefWidth="706.0" text="Account Number" textFill="#f9bc2c">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_LEFT" layoutX="90.0" layoutY="360.0" prefHeight="133.0" prefWidth="738.0" text="278690230989" textFill="WHITE">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
+      <Button layoutX="1075.0" layoutY="27.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="182.0" style="-fx-background-radius: 15; -fx-background-color: #557C93;" text="Log-out" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1075.0" layoutY="110.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="182.0" style="-fx-background-radius: 15; -fx-background-color: WHITE; -fx-border-color: #557C93; -fx-border-width: 6px; -fx-border-radius: 15;" />
+      <Button layoutX="1075.0" layoutY="323.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="182.0" style="-fx-background-radius: 15; -fx-background-color: WHITE; -fx-border-color: #557C93; -fx-border-width: 6px; -fx-border-radius: 15;" />
+      <Label layoutX="28.0" layoutY="536.0" prefHeight="85.0" prefWidth="442.0" text="Deposit">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="536.0" prefHeight="85.0" prefWidth="442.0" text="Withdraw">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="28.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white;" />
+      <Button layoutX="465.0" layoutY="625.0" mnemonicParsing="false" prefHeight="163.0" prefWidth="163.0" style="-fx-background-color: #F9BC2C; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, -6, 0); " />
+      <AnchorPane layoutX="644.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white;" />
+      <Button layoutX="1081.0" layoutY="625.0" mnemonicParsing="false" prefHeight="163.0" prefWidth="163.0" style="-fx-background-color: #F9BC2C; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, -6, 0); " />
+      <TextField layoutX="54.0" layoutY="654.0" prefHeight="106.0" prefWidth="406.0" promptText="Amount TL">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="670.0" layoutY="654.0" prefHeight="106.0" prefWidth="406.0" promptText="Amount TL">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>
