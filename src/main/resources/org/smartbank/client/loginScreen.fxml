@@ -26,8 +26,8 @@
             <Font size="40.0" />
          </font>
       </Label>
-      <TextField layoutX="427.0" layoutY="390.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;" />
-      <TextField layoutX="427.0" layoutY="555.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;" />
+      <TextField layoutX="427.0" layoutY="390.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
+      <TextField layoutX="427.0" layoutY="555.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
        <Hyperlink alignment="CENTER" layoutX="427.0" layoutY="672.0" prefHeight="64.0" prefWidth="556.0">
            <graphic>
                <TextFlow>

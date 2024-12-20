@@ -13,7 +13,7 @@
             <Font size="120.0" name="Alegreya" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="315.0" layoutY="335.0" prefHeight="222.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="378.0">
+      <VBox alignment="CENTER" layoutX="315.0" layoutY="335.0" prefHeight="222.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="378.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             <Label alignment="CENTER" text="Admin">
@@ -22,7 +22,7 @@
                </font>
             </Label>
          </children></VBox>
-      <VBox alignment="CENTER" layoutX="325.0" layoutY="345.0" prefHeight="222.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10;" AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="378.0">
+      <VBox alignment="CENTER" layoutX="325.0" layoutY="345.0" prefHeight="222.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="378.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             <Label alignment="CENTER" layoutX="123.0" layoutY="92.0" text="User">

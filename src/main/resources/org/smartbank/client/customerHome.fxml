@@ -31,7 +31,7 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <Button layoutX="1075.0" layoutY="27.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="182.0" style="-fx-background-radius: 15; -fx-background-color: #557C93;" text="Log-out" textFill="WHITE">
+      <Button layoutX="1075.0" layoutY="27.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="182.0" style="-fx-background-radius: 15; -fx-background-color: #557C93; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " text="Log-out" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
@@ -48,9 +48,9 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="28.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white;" />
+      <AnchorPane layoutX="28.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
       <Button layoutX="465.0" layoutY="625.0" mnemonicParsing="false" prefHeight="163.0" prefWidth="163.0" style="-fx-background-color: #F9BC2C; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, -6, 0); " />
-      <AnchorPane layoutX="644.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white;" />
+      <AnchorPane layoutX="644.0" layoutY="625.0" prefHeight="163.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
       <Button layoutX="1081.0" layoutY="625.0" mnemonicParsing="false" prefHeight="163.0" prefWidth="163.0" style="-fx-background-color: #F9BC2C; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, -6, 0); " />
       <TextField layoutX="54.0" layoutY="654.0" prefHeight="106.0" prefWidth="406.0" promptText="Amount TL">
          <font>
