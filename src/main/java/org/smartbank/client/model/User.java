@@ -13,7 +13,6 @@ public class User {
         this.userId = userId;
     }
 
-    // Getters and setters
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -38,7 +37,6 @@ public class User {
         this.userId = userId;
     }
 
-    // Common methods for both user and admin
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -62,7 +60,6 @@ public class User {
         return true;
     }
 
-    // ToString method to represent the user info
     @Override
     public String toString() {
         return "Account Number: " + accountNumber + ", User ID: " + userId + ", Balance: " + balance;
