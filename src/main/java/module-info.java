@@ -9,6 +9,7 @@ module org.smartbank.client {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
 
+    opens org.smartbank.client.controller to javafx.fxml;
     opens org.smartbank.client to javafx.fxml;
     exports org.smartbank.client;
 }
