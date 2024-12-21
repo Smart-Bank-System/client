@@ -19,7 +19,7 @@ public class FirstScreenController {
     private void handleAdminClick(MouseEvent event) throws IOException {
         System.out.println("Admin VBox clicked!");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenAdmin.fxml"));
         Scene adminScene = new Scene(loader.load());
 
         primaryStage.setScene(adminScene);
@@ -32,7 +32,7 @@ public class FirstScreenController {
         System.out.println("User VBox clicked!");
 
         // Load the User login screen
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
         Scene userScene = new Scene(loader.load());
 
         // Set the new scene on the primary stage
