@@ -27,7 +27,7 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="90.0" layoutY="360.0" prefHeight="133.0" prefWidth="738.0" text="278690230989" textFill="WHITE">
+            <Label  fx:id="accountNumberLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="360.0" prefHeight="133.0" prefWidth="738.0" text="278690230989" textFill="WHITE">
                <font>
                   <Font size="60.0" />
                </font>

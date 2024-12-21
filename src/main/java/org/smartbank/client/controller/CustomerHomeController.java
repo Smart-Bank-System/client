@@ -7,21 +7,31 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import org.smartbank.client.model.User;
 import javafx.scene.Node;
 import java.io.IOException;
 
 public class CustomerHomeController {
+    private User currentUser;
 
     @FXML
     private TextField depositAmountField;
-
     @FXML
     private TextField withdrawAmountField;
-
     @FXML
     private Label accountBalanceLabel;
+    @FXML
+    private Label accountNumberLabel;
 
-    private double accountBalance = 127869.23; // Example initial balance
+    // Method to initialize user and update UI
+    public void initializeUser(User user) {
+        this.currentUser = user;
+        System.out.println("Logged in user: " + user);
+
+        // Update UI elements with user-specific data
+        accountBalanceLabel.setText(String.format("%.2f TL", currentUser.getBalance()));
+        accountNumberLabel.setText(currentUser.getAccountNumber());
+    }
 
     @FXML
     private void handleDepositClick(MouseEvent event) {
@@ -29,7 +39,10 @@ public class CustomerHomeController {
             double depositAmount = Double.parseDouble(depositAmountField.getText().trim());
 
             if (depositAmount > 0) {
-                accountBalance += depositAmount;
+                // Update the user's balance
+                currentUser.setBalance(currentUser.getBalance() + depositAmount);
+
+                // Update the balance label with the new balance
                 updateBalance();
                 System.out.println("Deposited: " + depositAmount + " TL");
             } else {
@@ -42,14 +55,16 @@ public class CustomerHomeController {
         }
     }
 
-
     @FXML
     private void handleWithdrawClick(MouseEvent event) {
         try {
             double withdrawAmount = Double.parseDouble(withdrawAmountField.getText().trim());
 
-            if (withdrawAmount > 0 && withdrawAmount <= accountBalance) {
-                accountBalance -= withdrawAmount;
+            if (withdrawAmount > 0 && withdrawAmount <= currentUser.getBalance()) {
+                // Update the user's balance
+                currentUser.setBalance(currentUser.getBalance() - withdrawAmount);
+
+                // Update the balance label with the new balance
                 updateBalance();
                 System.out.println("Withdrew: " + withdrawAmount + " TL");
             } else {
@@ -117,8 +132,7 @@ public class CustomerHomeController {
     }
 
     private void updateBalance() {
-        accountBalanceLabel.setText(String.format("%.2f TL", accountBalance));
+        // Update the balance on the label based on the current user's balance
+        accountBalanceLabel.setText(String.format("%.2f TL", currentUser.getBalance()));
     }
-
-
 }
