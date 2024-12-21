@@ -30,12 +30,12 @@
                 <Font size="40.0" />
             </font>
         </Label>
-        <TextField layoutX="427.0" layoutY="390.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
-        <TextField layoutX="427.0" layoutY="555.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
-        <Button alignment="CENTER" layoutX="882.0" layoutY="555.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="120.0" style="-fx-background-color: #364E5C; -fx-background-radius: 15; -fx-text-fill: orange;" textFill="#364e5c" />
+        <TextField fx:id="preferredBankField" layoutX="427.0" layoutY="390.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
+        <TextField fx:id="passwordField" layoutX="427.0" layoutY="555.0" prefHeight="81.0" prefWidth="425.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
+        <Button alignment="CENTER" layoutX="882.0" layoutY="555.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="120.0" style="-fx-background-color: #364E5C; -fx-background-radius: 15; -fx-text-fill: orange;" textFill="#364e5c" onAction="#handleCompleteRegistrationClick" />
       <Button layoutX="40.0" layoutY="40.0"
               mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0"
-              style="-fx-background-color: #666666; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
+              style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
               fx:id="previousButton"
               onAction="#handlePreviousButtonClick2"/>
     </children>

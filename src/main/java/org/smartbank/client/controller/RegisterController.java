@@ -70,6 +70,47 @@ public class RegisterController {
         }
     }
     @FXML
+    private TextField preferredBankField;
+    @FXML
+    private TextField passwordField;
+
+    @FXML
+    private void handleCompleteRegistrationClick(ActionEvent event) {
+        String preferredBank = preferredBankField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        // Validate inputs
+        if (validatePreferredBank(preferredBank) && validatePassword(password)) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
+                Parent loginScreenRoot = loader.load();
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.setScene(new Scene(loginScreenRoot));
+                stage.show();
+                System.out.println("Registration complete. Redirecting to login...");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Failed to load login screen!");
+            }
+        } else {
+            showAlert("Invalid Input", "Please enter a valid Preferred Bank and Password.");
+        }
+    }
+
+    // Input validation for Preferred Bank
+    private boolean validatePreferredBank(String bank) {
+        return true; // will be implemented later.
+    }
+
+    // Input validation for Password
+    private boolean validatePassword(String password) {
+        return true;  // will be implemented later.
+    }
+
+    @FXML
     private void handlePreviousButtonClick2(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/registerScreen.fxml"));
@@ -84,5 +125,8 @@ public class RegisterController {
             e.printStackTrace();
         }
     }
+
+
+
 
 }

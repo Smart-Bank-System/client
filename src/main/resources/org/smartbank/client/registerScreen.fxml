@@ -43,7 +43,7 @@
               onAction="#handleRegisterButtonClick"/>
       <Button layoutX="40.0" layoutY="40.0"
               mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0"
-              style="-fx-background-color: #666666; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
+              style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
               fx:id="previousButton"
               onAction="#handlePreviousButtonClick"/>
    </children>
