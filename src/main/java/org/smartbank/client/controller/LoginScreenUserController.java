@@ -47,6 +47,7 @@ public class LoginScreenUserController {
 
     @FXML
     private void handleLoginClick(MouseEvent event) {
+        System.out.println("LOGIN CLICKED ********");
         String tckn = tcknField.getText();
         String password = passwordField.getText();
 
@@ -63,9 +64,9 @@ public class LoginScreenUserController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/customerHome.fxml"));
                 Scene customerHomeScene = new Scene(loader.load());
 
-                // Pass the user object to the next screen if needed
-                // CustomerHomeController controller = loader.getController();
-                // controller.initializeUser(user);
+                // Pass the user object to the next screen
+                CustomerHomeController controller = loader.getController();
+                controller.initializeUser(user);
 
                 Stage currentStage = (Stage) tcknField.getScene().getWindow();
                 currentStage.setScene(customerHomeScene);
