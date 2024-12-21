@@ -6,9 +6,33 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import java.net.URL;
 
 public class FirstScreenController {
+    @FXML
+    private Label welcomeLabel;
 
+    @FXML
+    private Label adminLabel;
+    @FXML
+    private Label userLabel;
+    @FXML
+    public void initialize() {
+        URL fontUrlAlegreya = getClass().getResource("/org/smartbank/client/fonts/Alegreya-VariableFont_wght.ttf");
+        if (fontUrlAlegreya != null) {
+            Font font = Font.loadFont(fontUrlAlegreya.toExternalForm(), 120);
+            welcomeLabel.setFont(font);
+        }
+
+        URL fontUrlAvenir = getClass().getResource("/org/smartbank/client/fonts/AvenirNext-Bold.ttf");
+        if (fontUrlAvenir != null) {
+            Font font = Font.loadFont(fontUrlAvenir.toExternalForm(), 40);
+            userLabel.setFont(font);
+            adminLabel.setFont(font);
+        }
+    }
     private Stage primaryStage;
 
     public void setPrimaryStage(Stage stage) {
@@ -26,7 +50,6 @@ public class FirstScreenController {
         primaryStage.show();
     }
 
-    // Handle User click event (example)
     @FXML
     private void handleUserClick(MouseEvent event) throws IOException {
         System.out.println("User VBox clicked!");

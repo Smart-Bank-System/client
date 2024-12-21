@@ -13,9 +13,9 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.smartbank.client.controller.FirstScreenController">
    <children>
-      <Label alignment="CENTER" layoutX="140.0" layoutY="81.0" prefHeight="161.0" prefWidth="999.0" text="Welcome" textFill="WHITE">
+      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="140.0" layoutY="81.0" prefHeight="161.0" prefWidth="999.0" text="Welcome" textFill="WHITE">
          <font>
-            <Font size="120.0" name="Alegreya" />
+            <Font size="120.0" />
          </font>
       </Label>
       <VBox alignment="CENTER" layoutX="315.0" layoutY="335.0" prefHeight="222.0" prefWidth="310.0" onMouseClicked="#handleAdminClick"
@@ -23,9 +23,9 @@
             AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="378.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-            <Label alignment="CENTER" text="Admin">
+            <Label fx:id="adminLabel" alignment="CENTER" text="Admin">
                <font>
-                  <Font name="System Bold" size="40.0" />
+                  <Font size="40.0" />
                </font>
             </Label>
          </children>
@@ -35,9 +35,9 @@
             AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="378.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-            <Label alignment="CENTER" layoutX="123.0" layoutY="92.0" text="User">
+            <Label fx:id="userLabel" alignment="CENTER" layoutX="123.0" layoutY="92.0" text="User">
                <font>
-                  <Font name="System Bold" size="40.0" />
+                  <Font size="40.0" />
                </font>
             </Label>
          </children>

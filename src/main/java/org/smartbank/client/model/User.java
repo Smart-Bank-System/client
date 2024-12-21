@@ -2,9 +2,9 @@ package org.smartbank.client.model;
 
 public class User {
 
-    private String accountNumber;  // Unique account identifier
-    private double balance;        // Account balance
-    private String userId;         // User ID
+    private String accountNumber;
+    private double balance;
+    private String userId;
 
     // Constructor for initializing the user account
     public User(String accountNumber, double initialBalance, String userId) {
