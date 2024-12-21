@@ -103,6 +103,10 @@ public class CustomerHomeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/historyScreen.fxml"));
             Scene historyScene = new Scene(loader.load());
 
+            // Pass the currentUser object to the HistoryScreenController
+            HistoryScreenController historyScreenController = loader.getController();
+            historyScreenController.initializeUser(currentUser);
+
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(historyScene);
             currentStage.show();
@@ -113,6 +117,7 @@ public class CustomerHomeController {
         }
     }
 
+
     @FXML
     private void handleTransferClick(MouseEvent event) {
         try {
@@ -120,6 +125,11 @@ public class CustomerHomeController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/transferScreen.fxml"));
             Scene transferScene = new Scene(loader.load());
+
+            // Pass the currentUser object to the HistoryScreenController
+            TransferScreenController transferScreenController = loader.getController();
+            transferScreenController.initializeUser(currentUser);
+
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(transferScene);

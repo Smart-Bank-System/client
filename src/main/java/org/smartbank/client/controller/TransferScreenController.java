@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import org.smartbank.client.model.User;
+
 import java.io.IOException;
 
 public class TransferScreenController {
@@ -18,6 +20,12 @@ public class TransferScreenController {
     @FXML
     private TextField transferAmountField;
 
+    private User currentUser; // To store the user object
+
+    public void initializeUser(User user) {
+        this.currentUser = user;
+        System.out.println("User in History screen: " + user);
+    }
     @FXML
     private void handleGoBackClick(MouseEvent event) {
         try {
@@ -25,6 +33,10 @@ public class TransferScreenController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/customerHome.fxml"));
             Scene customerHomeScene = new Scene(loader.load());
+
+            // Get the controller of CustomerHome screen and pass the current user
+            CustomerHomeController customerHomeController = loader.getController();
+            customerHomeController.initializeUser(currentUser);  // Pass currentUser to CustomerHomeController
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(customerHomeScene);
