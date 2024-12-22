@@ -16,19 +16,26 @@ public class AdminHomeController {
     private Label requestLabel;
     @FXML
     public void initialize() {
-
+        URL fontUrlAvenir = getClass().getResource("/org/smartbank/client/fonts/AvenirNext-Bold.ttf");
+        if (fontUrlAvenir != null) {
+            Font font = Font.loadFont(fontUrlAvenir.toExternalForm(), 40);
+            historyLabel.setFont(font);
+            newaccountLabel.setFont(font);
+            requestLabel.setFont(font);
+        }
     }
     @FXML
     private void handleLogoutClick() {
         try {
             System.out.println("Log-out button clicked!");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenAdmin.fxml")); // Use the correct FXML file
             Scene loginScene = new Scene(loader.load());
             Stage currentStage = (Stage) historyLabel.getScene().getWindow();
             currentStage.setScene(loginScene);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Failed to load login screen!");
+            System.err.println("Failed to load admin login screen!");
         }
     }
+
 }
