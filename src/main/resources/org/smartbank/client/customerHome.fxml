@@ -18,11 +18,13 @@
                <font>
                   <Font size="50.0" />
                </font>
+
             </Label>
             <Label fx:id="accountBalanceLabel" layoutX="90.0" layoutY="144.0" prefHeight="133.0" prefWidth="738.0" text="127,869.23 TL" textFill="WHITE">
                <font>
-                  <Font size="100.0" />
+                  <Font size="100.0"  />
                </font>
+
             </Label>
             <Label layoutX="90.0" layoutY="298.0" prefHeight="72.0" prefWidth="706.0" text="Account Number" textFill="#f9bc2c">
                <font>
