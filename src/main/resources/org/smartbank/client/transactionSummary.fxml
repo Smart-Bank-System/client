@@ -6,17 +6,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane fx:controller="org.smartbank.client.controller.TransactionSummaryController" prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #E1E4E5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="176.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to right, #557C93 0%, #1A262D 100%);" />
         <TextField layoutX="170.0" layoutY="226.0" prefHeight="249.0" prefWidth="940.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4);" />
-        <Button fx:id="goBackButton" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;" onMouseClicked="#handleGoBackClick"/>
+        <Button fx:id="goBackButton" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0"
+                style="-fx-background-color: rgba(204, 204, 204, 0.5); -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
+                onMouseClicked="#handleGoBackClick">
+            <graphic>
+                <ImageView fx:id="backIcon" fitHeight="60.0" fitWidth="40.0">
+                    <image>
+                        <Image url="@icons/weui_back-outlined.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="308.0" layoutY="48.0" prefHeight="88.0" prefWidth="602.0" text="Transaction Summary" textFill="WHITE">
             <font>
                 <Font size="60.0" />
             </font>
         </Label>
-        <Button fx:id="closeButton" layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;" onMouseClicked="#handleCloseClick" />
+        <Button fx:id="closeButton" layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0"
+                style="-fx-background-color: rgba(204, 204, 204, 0.5); -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
+                onMouseClicked="#handleCloseClick" >
+            <graphic>
+                <ImageView fx:id="closeIcon" fitHeight="60.0" fitWidth="60.0">
+                    <image>
+                        <Image url="@icons/material-symbols_close.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
         <Label fx:id="transactionAmountLabel" layoutX="218.0" layoutY="277.0" prefHeight="74.0" prefWidth="849.0" text="34,539.87 TL">
             <font>
                 <Font size="80.0" />

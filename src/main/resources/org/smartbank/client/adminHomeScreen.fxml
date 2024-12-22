@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="832.0" prefWidth="1280.0" style="-fx-background-color: #E1E4E5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.smartbank.client.controller.AdminHomeController">
+   <children>
+      <ListView fx:id="historyListView" layoutX="30.0" layoutY="27.0" prefHeight="777.0" prefWidth="698.0" style="-fx-background-color: linear-gradient(to right, #557C93 0%, #1A262D 100%); -fx-background-radius: 20;" />
+      <ListView fx:id="newRequestsListView" layoutX="755.0" layoutY="175.0" prefHeight="627.0" prefWidth="507.0" style="-fx-background-color: #E1E4E5; -fx-background-radius: 20;" />
+      <Label fx:id="historyLabel" alignment="CENTER" layoutX="158.0" layoutY="44.0" prefHeight="85.0" prefWidth="442.0" text="History" textFill="WHITE">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="newaccountLabel" layoutX="755.0" layoutY="44.0" prefHeight="85.0" prefWidth="442.0" text="New Account">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="requestLabel" layoutX="755.0" layoutY="85.0" prefHeight="85.0" prefWidth="442.0" text="Requests">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Button fx:id="logOutButton" layoutX="1170.0" layoutY="27.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="75.0" style="-fx-background-color: #557C93; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4);"
+              onMouseClicked="#handleLogoutClick"/>
+   </children>
+</AnchorPane>

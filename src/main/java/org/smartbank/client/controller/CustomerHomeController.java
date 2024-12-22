@@ -12,10 +12,18 @@ import org.smartbank.client.service.TransactionService;
 import org.smartbank.client.service.UserService;
 import org.smartbank.client.util.SessionManager;
 import javafx.scene.Node;
+import javafx.scene.text.Font;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 
 public class CustomerHomeController {
+
+    @FXML
+    private Label accountBalanceLabel;
+
+
     private final UserService userService = UserService.getInstance(); // Singleton UserService
     private final TransactionService transactionService = TransactionService.getInstance(); // Singleton TransactionService
 
@@ -24,12 +32,16 @@ public class CustomerHomeController {
     @FXML
     private TextField withdrawAmountField;
     @FXML
-    private Label accountBalanceLabel;
-    @FXML
     private Label accountNumberLabel;
 
     @FXML
     public void initialize() {
+
+        URL fontUrlAvenir = getClass().getResource("/org/smartbank/client/fonts/AvenirNext-Bold.ttf");
+        if (fontUrlAvenir != null) {
+            Font font = Font.loadFont(fontUrlAvenir.toExternalForm(), 100);
+            accountBalanceLabel.setFont(font);
+        }
         // Retrieve the current user from the SessionManager
         User currentUser = SessionManager.getInstance().getCurrentUser();
         if (currentUser != null) {
