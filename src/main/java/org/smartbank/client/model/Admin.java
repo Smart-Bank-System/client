@@ -1,37 +1,45 @@
 package org.smartbank.client.model;
 
-public class Admin extends User {
+import javafx.beans.property.*;
 
-    public Admin(String accountNumber, String userId) {
-        super(accountNumber, 0.0, userId);  // Admin does not have a balance, so set it to 0
+public class Admin {
+    private IntegerProperty adminId;       // Unique admin ID (auto-incremented in the database)
+    private StringProperty tckn;          // Türkiye Cumhuriyeti Kimlik Numarası
+
+    public Admin(int adminId, String tckn) {
+        this.adminId = new SimpleIntegerProperty(adminId);
+        this.tckn = new SimpleStringProperty(tckn);
     }
 
-    // Admin-specific functionality
-    public void viewAllUsers() {
-        // Logic to view all users' information
-        System.out.println("Displaying all user accounts...");
+    public IntegerProperty adminIdProperty() {
+        return adminId;
     }
 
-    public void manageTransactions() {
-        // Logic to view, modify, or delete transactions
-        System.out.println("Managing transactions...");
+    public int getAdminId() {
+        return adminId.get();
     }
 
-    // Admin may not need deposit/withdraw methods
-    @Override
-    public void deposit(double amount) {
-        System.out.println("Admin cannot perform deposit operation.");
+    public void setAdminId(int adminId) {
+        this.adminId.set(adminId);
     }
 
-    @Override
-    public boolean withdraw(double amount) {
-        System.out.println("Admin cannot perform withdrawal operation.");
-        return false;
+    public StringProperty tcknProperty() {
+        return tckn;
     }
 
-    // Admin may also override toString() method if needed for customized display
+    public String getTckn() {
+        return tckn.get();
+    }
+
+    public void setTckn(String tckn) {
+        this.tckn.set(tckn);
+    }
+
     @Override
     public String toString() {
-        return "Admin [Account Number: " + getAccountNumber() + ", User ID: " + getUserId() + "]";
+        return "Admin{" +
+                "adminId=" + getAdminId() +
+                ", tckn='" + getTckn() + '\'' +
+                '}';
     }
 }

@@ -14,13 +14,7 @@
                 <Font size="40.0" />
             </font>
         </Label>
-        <Label layoutX="392.0" layoutY="415.0" prefHeight="54.0" prefWidth="228.0" text="Full Name">
-            <font>
-                <Font size="40.0" />
-            </font>
-        </Label>
         <TextField fx:id="accountNumberField" layoutX="392.0" layoutY="295.0" prefHeight="81.0" prefWidth="496.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
-        <TextField fx:id="fullNameField" layoutX="392.0" layoutY="485.0" prefHeight="81.0" prefWidth="496.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 4); " />
         <Button fx:id="transferButton" alignment="CENTER" layoutX="918.0" layoutY="675.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="118.0" style="-fx-background-color: #F9BC2C; -fx-background-radius: 15; -fx-text-fill: orange;" textFill="#f9bc2c"  onMouseClicked="#handleTransferClick" />
         <Button fx:id="goBackButton" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;" onMouseClicked="#handleGoBackClick" />
       <Label layoutX="391.0" layoutY="605.0" prefHeight="58.0" prefWidth="322.0" text="Transfer Amount">

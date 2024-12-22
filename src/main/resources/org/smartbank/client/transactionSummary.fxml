@@ -16,26 +16,26 @@
                 <Font size="60.0" />
             </font>
         </Label>
-      <Button fx:id="closeButton" layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;" onMouseClicked="#handleCloseClick" />
-      <Label layoutX="218.0" layoutY="277.0" prefHeight="74.0" prefWidth="849.0" text="34,539.87 TL">
-         <font>
-            <Font size="80.0" />
-         </font>
-      </Label>
-      <Label layoutX="218.0" layoutY="388.0" prefHeight="75.0" prefWidth="628.0" text="21.47 - 9/12/2024" textFill="#827b7b">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="107.0" layoutY="700.0" prefHeight="80.0" prefWidth="401.0" text="Sender Name">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="771.0" layoutY="700.0" prefHeight="80.0" prefWidth="401.0" text="Receiver Name">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Label>
+        <Button fx:id="closeButton" layoutX="1140.0" layoutY="40.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0" style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;" onMouseClicked="#handleCloseClick" />
+        <Label fx:id="transactionAmountLabel" layoutX="218.0" layoutY="277.0" prefHeight="74.0" prefWidth="849.0" text="34,539.87 TL">
+            <font>
+                <Font size="80.0" />
+            </font>
+        </Label>
+        <Label fx:id="transactionDateLabel" layoutX="218.0" layoutY="388.0" prefHeight="75.0" prefWidth="628.0" text="21.47 - 9/12/2024" textFill="#827b7b">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Label>
+        <Label fx:id="senderAccountNumberLabel" alignment="CENTER" layoutX="107.0" layoutY="700.0" prefHeight="80.0" prefWidth="700" text="Sender Account Number">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Label>
+        <Label fx:id="recipientAccountNumberLabel" alignment="CENTER" layoutX="771.0" layoutY="700.0" prefHeight="80.0" prefWidth="700" text="Recipient Account Number">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

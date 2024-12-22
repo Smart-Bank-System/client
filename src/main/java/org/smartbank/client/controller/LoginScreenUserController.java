@@ -9,14 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
-import org.smartbank.client.services.AuthService;
+import org.smartbank.client.service.AuthService;
 import org.smartbank.client.model.User;
+import org.smartbank.client.util.SessionManager;
 
 import java.io.IOException;
 
 public class LoginScreenUserController {
-
-    private final AuthService authService = new AuthService(); // Instantiate the AuthService
+    private final AuthService authService = new AuthService(); // Use AuthService for authentication
 
     @FXML
     private TextField tcknField;
@@ -47,7 +47,6 @@ public class LoginScreenUserController {
 
     @FXML
     private void handleLoginClick(MouseEvent event) {
-        System.out.println("LOGIN CLICKED ********");
         String tckn = tcknField.getText();
         String password = passwordField.getText();
 
@@ -56,17 +55,16 @@ public class LoginScreenUserController {
             return;
         }
 
+        // Use authService for authentication
         User user = authService.login(tckn, password);
         if (user != null) {
-            // Login successful
+            // Set the current user in the SessionManager
+            SessionManager.getInstance().setCurrentUser(user);
+
+            // Navigate to the customer home screen
             try {
-                System.out.println("Login successful for user: " + user);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/customerHome.fxml"));
                 Scene customerHomeScene = new Scene(loader.load());
-
-                // Pass the user object to the next screen
-                CustomerHomeController controller = loader.getController();
-                controller.initializeUser(user);
 
                 Stage currentStage = (Stage) tcknField.getScene().getWindow();
                 currentStage.setScene(customerHomeScene);
@@ -75,7 +73,6 @@ public class LoginScreenUserController {
                 showAlert("Error", "Failed to load customer home screen.");
             }
         } else {
-            // Login failed
             showAlert("Error", "Invalid TCKN or password. Please try again.");
         }
     }

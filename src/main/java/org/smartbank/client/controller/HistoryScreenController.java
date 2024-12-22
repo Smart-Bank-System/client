@@ -1,50 +1,74 @@
 package org.smartbank.client.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.Node;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import org.smartbank.client.model.User;
+import org.smartbank.client.model.Transaction;
+import org.smartbank.client.service.TransactionService;
+import org.smartbank.client.util.SessionManager;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HistoryScreenController {
+    @FXML
+    private ListView<String> historyListView; // ListView for displaying transactions
+    @FXML
+    private Button goBackButton;
 
-    private User currentUser; // To store the user object
+    private final TransactionService transactionService = TransactionService.getInstance();
 
     @FXML
-    private ListView<String> historyListView;
+    public void initialize() {
+        // Access the current user from the SessionManager
+        if (SessionManager.getInstance().getCurrentUser() != null) {
+            int userId = SessionManager.getInstance().getCurrentUser().getUserId();
+            populateTransactionHistory(userId);
+        } else {
+            System.err.println("No user found in the session.");
+        }
+    }
 
-    // Method to initialize user and update UI
-    public void initializeUser(User user) {
-        this.currentUser = user;
-        System.out.println("User in History screen: " + user);
+    private void populateTransactionHistory(int userId) {
+        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
 
-        // Update the historyListView or other UI elements with user-specific data if needed
-        // e.g., historyListView.getItems().add(currentUser.getTransactionHistory());
+        // Clear the ListView before populating
+        historyListView.getItems().clear();
+
+        if (transactions.isEmpty()) {
+            historyListView.getItems().add("No transactions found.");
+        } else {
+            for (Transaction transaction : transactions) {
+                String transactionInfo = String.format(
+                        "%,.2f TL\n%s\n%s - %s",
+                        transaction.getAmount(),
+                        transaction.getTransactionType(),
+                        transaction.getDate().toLocalTime().toString(),
+                        transaction.getDate().toLocalDate().toString()
+                );
+                historyListView.getItems().add(transactionInfo);
+            }
+        }
     }
 
     @FXML
     private void handleGoBackClick(MouseEvent event) {
         try {
-            System.out.println("Go Back button clicked!");
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/customerHome.fxml"));
             Scene customerHomeScene = new Scene(loader.load());
 
-            CustomerHomeController customerHomeController = loader.getController();
-            customerHomeController.initializeUser(currentUser); // Pass the user object to CustomerHomeController
-
+            // Set the new scene in the current stage
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(customerHomeScene);
             currentStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Failed to load customer home screen.");
+            System.err.println("Failed to load the customer home screen.");
         }
     }
 }
