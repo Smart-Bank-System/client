@@ -23,22 +23,29 @@ public class LoginScreenAdminController {
 
     @FXML
     private void handleLoginClick(MouseEvent event) {
-        String tckn = tcknField.getText().trim(); // Changed to tcknField
-        String password = passwordField.getText().trim(); // Changed to passwordField
+        String tckn = tcknField.getText().trim();
+        String password = passwordField.getText().trim();
 
         if (tckn.isEmpty() || password.isEmpty()) {
             showAlert("Error", "Please enter your TCKN and password.");
             return;
         }
+
         Admin admin = authService.loginAdmin(tckn, password);
         if (admin != null) {
             try {
                 System.out.println("Login successful for admin: " + admin);
 
+                // Load the AdminHomeScreen FXML
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/adminHomeScreen.fxml"));
                 Scene adminHomeScene = new Scene(loader.load());
 
-                Stage currentStage = (Stage) tcknField.getScene().getWindow(); // Use tcknField instead of tcknLabel
+                // Pass the Admin object to AdminHomeController
+                AdminHomeController controller = loader.getController();
+                controller.setAdmin(admin);
+
+                // Set the scene on the current stage
+                Stage currentStage = (Stage) tcknField.getScene().getWindow();
                 currentStage.setScene(adminHomeScene);
 
             } catch (IOException e) {
@@ -49,6 +56,7 @@ public class LoginScreenAdminController {
             showAlert("Error", "Invalid TCKN or password. Please try again.");
         }
     }
+
 
 
 

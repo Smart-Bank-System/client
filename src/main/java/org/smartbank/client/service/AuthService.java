@@ -16,10 +16,10 @@ public class AuthService {
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            // Benzersiz bir hesap numarası oluştur
+            // Generate a unique account number
             String accountNumber = generateUniqueAccountNumber(connection);
 
-            // Parametreleri sırayla ayarla
+            // Set parameters in order
             statement.setString(1, fullname);
             statement.setString(2, tckn);
             statement.setString(3, accountNumber);
@@ -36,8 +36,6 @@ public class AuthService {
         }
     }
 
-
-    // Authenticate a user by TCKN and password
     public User login(String tckn, String password) {
         String query = "SELECT user_id, fullname, tckn, account_number, balance, status, preferred_bank " +
                 "FROM users WHERE tckn = ? AND password = ?";
@@ -70,10 +68,8 @@ public class AuthService {
         return null;
     }
 
-
-    // Authenticate an admin by TCKN and password
     public Admin loginAdmin(String tckn, String password) {
-        String query = "SELECT admin_id, tckn, password FROM admins WHERE tckn = ?";
+        String query = "SELECT admin_id, tckn, password, preferred_bank FROM admins WHERE tckn = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -84,10 +80,11 @@ public class AuthService {
                 if (resultSet.next()) {
                     String storedPassword = resultSet.getString("password");
 
-                    // Verify the entered password matches the stored password
                     if (password.equals(storedPassword)) {
                         int adminId = resultSet.getInt("admin_id");
-                        return new Admin(adminId, tckn);
+                        String preferredBank = resultSet.getString("preferred_bank");
+
+                        return new Admin(adminId, tckn, preferredBank);
                     } else {
                         System.out.println("Invalid password.");
                     }
@@ -102,7 +99,6 @@ public class AuthService {
         return null;
     }
 
-    // Generate a random account number
     private String generateAccountNumber() {
         Random random = new Random();
         StringBuilder accountNumber = new StringBuilder("TR");
@@ -112,7 +108,6 @@ public class AuthService {
         return accountNumber.toString();
     }
 
-    // Ensure the account number is unique in the database
     private String generateUniqueAccountNumber(Connection connection) throws SQLException {
         String accountNumber;
         String query = "SELECT COUNT(*) FROM users WHERE account_number = ?";
