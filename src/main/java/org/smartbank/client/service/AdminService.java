@@ -36,11 +36,11 @@ public class AdminService {
                 while (resultSet.next()) {
                     User user = new User(
                             resultSet.getInt("user_id"),
-                            resultSet.getString("tckn"),
-                            resultSet.getString("account_number"),
-                            resultSet.getString("password"),
-                            resultSet.getDouble("balance"),
-                            resultSet.getString("preferred_bank")
+                            resultSet.getString("fullname"),     // Full Name
+                            resultSet.getString("tckn"),         // TCKN
+                            resultSet.getString("account_number"), // Account Number
+                            resultSet.getDouble("balance"),      // Balance
+                            resultSet.getString("preferred_bank") // Preferred Bank
                     );
                     pendingUsers.add(user);
                 }

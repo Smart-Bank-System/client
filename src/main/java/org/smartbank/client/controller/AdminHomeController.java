@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -97,11 +98,11 @@ public class AdminHomeController {
     private HBox createRequestItem(User user) {
         HBox requestItem = new HBox();
         requestItem.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5; -fx-spacing: 10;");
-        requestItem.setPrefHeight(50);
+        requestItem.setPrefHeight(100);
 
         Label userDetailsLabel = new Label(
-                String.format("User ID: %d\nFull Name: %s\nTCKN: %s\nAccount Number: %s",
-                        user.getUserId(), user.getFullname(), user.getTckn(), user.getAccountNumber())
+                String.format("User ID: %d\nTCKN: %s\nFull Name: %s\nAccount Number: %s",
+                        user.getUserId(), user.getTckn(), user.getFullname(), user.getAccountNumber())
         );
         userDetailsLabel.setStyle("-fx-font-size: 14px;");
 
@@ -112,8 +113,11 @@ public class AdminHomeController {
         Button denyButton = new Button("Deny");
         denyButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-border-radius: 5; -fx-padding: 5;");
         denyButton.setOnAction(e -> handleDenyRequest(user));
+        // Spacer for manual control
+        Pane spacer = new Pane();
+        spacer.setPrefWidth(110); // You can adjust this value to control the spacing
 
-        requestItem.getChildren().addAll(userDetailsLabel, approveButton, denyButton);
+        requestItem.getChildren().addAll(userDetailsLabel, spacer, approveButton, denyButton);
         return requestItem;
     }
 
