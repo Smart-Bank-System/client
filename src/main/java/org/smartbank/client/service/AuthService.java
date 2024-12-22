@@ -8,63 +8,70 @@ import java.util.Random;
 
 public class AuthService {
 
-    // Register a new user with TCKN and password
-    public boolean register(String tckn, String password) {
-        String query = "INSERT INTO users (tckn, account_number, password) VALUES (?, ?, ?)";
+    public boolean register(String fullname, String tckn, String password, String preferredBank) {
+        System.out.println("Register with fullname");
+        String query = "INSERT INTO users (fullname, tckn, account_number, password, status, preferred_bank) " +
+                "VALUES (?, ?, ?, ?, 'PENDING', ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            // Generate a unique account number
+            // Benzersiz bir hesap numarası oluştur
             String accountNumber = generateUniqueAccountNumber(connection);
 
-            statement.setString(1, tckn);
-            statement.setString(2, accountNumber);
-            statement.setString(3, password);  // Store password directly (no hashing)
+            // Parametreleri sırayla ayarla
+            statement.setString(1, fullname);
+            statement.setString(2, tckn);
+            statement.setString(3, accountNumber);
+            statement.setString(4, password);
+            statement.setString(5, preferredBank);
 
             int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0;  // Return true if the insertion was successful
+            return rowsInserted > 0;
 
         } catch (SQLException e) {
+            System.err.println("Error during registration: " + e.getMessage());
             e.printStackTrace();
-            return false;  // Return false if an error occurred
+            return false;
         }
     }
+
 
     // Authenticate a user by TCKN and password
     public User login(String tckn, String password) {
-        String query = "SELECT user_id, tckn, account_number, balance, password FROM users WHERE tckn = ?";
+        String query = "SELECT user_id, fullname, tckn, account_number, balance, status, preferred_bank " +
+                "FROM users WHERE tckn = ? AND password = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, tckn);
+            statement.setString(2, password);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    String storedPassword = resultSet.getString("password");
-
-                    // Verify the entered password matches the stored password
-                    if (password.equals(storedPassword)) {
+                    String status = resultSet.getString("status");
+                    if ("CONFIRMED".equalsIgnoreCase(status)) {
                         int userId = resultSet.getInt("user_id");
+                        String fullname = resultSet.getString("fullname");
                         String accountNumber = resultSet.getString("account_number");
                         double balance = resultSet.getDouble("balance");
+                        String preferredBank = resultSet.getString("preferred_bank");
 
-                        return new User(userId, tckn, accountNumber, balance);  // Return authenticated user
+                        return new User(userId, fullname, tckn, accountNumber, balance, preferredBank);
                     } else {
-                        System.out.println("Invalid password.");
+                        System.out.println("Account is not confirmed.");
                     }
-                } else {
-                    System.out.println("User not found.");
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;  // Return null if authentication fails
+        return null;
     }
 
+
+    // Authenticate an admin by TCKN and password
     public Admin loginAdmin(String tckn, String password) {
         String query = "SELECT admin_id, tckn, password FROM admins WHERE tckn = ?";
 
@@ -80,7 +87,7 @@ public class AuthService {
                     // Verify the entered password matches the stored password
                     if (password.equals(storedPassword)) {
                         int adminId = resultSet.getInt("admin_id");
-                        return new Admin(adminId, tckn);  // Return authenticated admin
+                        return new Admin(adminId, tckn);
                     } else {
                         System.out.println("Invalid password.");
                     }
@@ -92,16 +99,15 @@ public class AuthService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;  // Return null if authentication fails
+        return null;
     }
-
 
     // Generate a random account number
     private String generateAccountNumber() {
         Random random = new Random();
         StringBuilder accountNumber = new StringBuilder("TR");
         for (int i = 0; i < 10; i++) {
-            accountNumber.append(random.nextInt(10));  // Append a random digit
+            accountNumber.append(random.nextInt(10));
         }
         return accountNumber.toString();
     }
@@ -117,7 +123,7 @@ public class AuthService {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     resultSet.next();
                     if (resultSet.getInt(1) == 0) {
-                        break;  // Account number is unique
+                        break;
                     }
                 }
             }

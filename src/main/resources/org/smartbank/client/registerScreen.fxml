@@ -40,11 +40,13 @@
       <Button alignment="CENTER" layoutX="882.0" layoutY="555.0"
               mnemonicParsing="false" prefHeight="81.0" prefWidth="120.0"
               style="-fx-background-color: #364E5C; -fx-background-radius: 15; -fx-text-fill: orange;" textFill="#364e5c"
-              onAction="#handleRegisterButtonClick"/>
+              onAction="#handleNextButtonClick"/>
       <Button layoutX="40.0" layoutY="40.0"
               mnemonicParsing="false" prefHeight="94.0" prefWidth="102.0"
               style="-fx-background-color: #CCCCCC; -fx-background-radius: 30; -fx-border-color: #FFFFFF; -fx-border-width: 2; -fx-border-radius: 30;"
               fx:id="previousButton"
               onAction="#handlePreviousButtonClick"/>
+      <Label fx:id="messageLabel" layoutX="427.0" layoutY="650.0" prefHeight="30.0" prefWidth="425.0"
+             style="-fx-text-fill: red; -fx-font-size: 18px;" />
    </children>
 </AnchorPane>

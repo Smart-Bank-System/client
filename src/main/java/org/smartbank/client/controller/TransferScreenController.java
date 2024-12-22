@@ -92,6 +92,12 @@ public class TransferScreenController {
                 return;
             }
 
+            // Check for preferred bank mismatch
+            if (!recipient.getPreferredBank().equalsIgnoreCase(currentUser.getPreferredBank())) {
+                showAlert("Error", "Recipient's preferred bank does not match your preferred bank.");
+                return;
+            }
+
             // Perform the transfer
             boolean transferSuccessful = userService.transfer(currentUser.getUserId(), recipient.getUserId(), transferAmount);
 

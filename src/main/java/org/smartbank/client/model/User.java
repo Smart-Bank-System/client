@@ -3,16 +3,22 @@ package org.smartbank.client.model;
 import javafx.beans.property.*;
 
 public class User {
-    private IntegerProperty userId;          // Unique user ID (auto-incremented in the database)
-    private StringProperty tckn;            // Türkiye Cumhuriyeti Kimlik Numarası
-    private StringProperty accountNumber;   // Bank account number
-    private DoubleProperty balance;         // Account balance
+    // Properties for JavaFX binding
+    private final IntegerProperty userId = new SimpleIntegerProperty();
+    private final StringProperty fullname = new SimpleStringProperty();
+    private final StringProperty tckn = new SimpleStringProperty();
+    private final StringProperty accountNumber = new SimpleStringProperty();
+    private final DoubleProperty balance = new SimpleDoubleProperty();
+    private final StringProperty preferredBank = new SimpleStringProperty();
 
-    public User(int userId, String tckn, String accountNumber, double balance) {
-        this.userId = new SimpleIntegerProperty(userId);
-        this.tckn = new SimpleStringProperty(tckn);
-        this.accountNumber = new SimpleStringProperty(accountNumber);
-        this.balance = new SimpleDoubleProperty(balance);
+    // Constructor
+    public User(int userId, String fullname, String tckn, String accountNumber, double balance, String preferredBank) {
+        this.userId.set(userId);
+        this.fullname.set(fullname);
+        this.tckn.set(tckn);
+        this.accountNumber.set(accountNumber);
+        this.balance.set(balance);
+        this.preferredBank.set(preferredBank);
     }
 
     // Getters and Setters for JavaFX Properties
@@ -26,6 +32,18 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId.set(userId);
+    }
+
+    public StringProperty fullnameProperty() {
+        return fullname;
+    }
+
+    public String getFullname() {
+        return fullname.get();
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname.set(fullname);
     }
 
     public StringProperty tcknProperty() {
@@ -64,13 +82,28 @@ public class User {
         this.balance.set(balance);
     }
 
+    public StringProperty preferredBankProperty() {
+        return preferredBank;
+    }
+
+    public String getPreferredBank() {
+        return preferredBank.get();
+    }
+
+    public void setPreferredBank(String preferredBank) {
+        this.preferredBank.set(preferredBank);
+    }
+
+    // Override toString for easier debugging and logging
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + getUserId() +
+                ", fullname='" + getFullname() + '\'' +
                 ", tckn='" + getTckn() + '\'' +
                 ", accountNumber='" + getAccountNumber() + '\'' +
                 ", balance=" + getBalance() +
+                ", preferredBank='" + getPreferredBank() + '\'' +
                 '}';
     }
 }

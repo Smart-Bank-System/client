@@ -1,14 +1,15 @@
 package org.smartbank.client.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import org.smartbank.client.service.AuthService;
 
 import java.io.IOException;
 
@@ -16,117 +17,169 @@ public class RegisterController {
 
     @FXML
     private TextField fullNameField; // Full Name input
-    @FXML
-    private TextField tcknField;     // TCKN input
 
     @FXML
-    private void handleRegisterButtonClick(ActionEvent event) {
-        String fullName = fullNameField.getText().trim();
-        String tckn = tcknField.getText().trim();
+    private TextField tcknField; // TCKN input
 
-        // Validate inputs
-        if (validateFullName(fullName) && validateTCKN(tckn)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/registerScreen2.fxml"));
-                Parent registerScreen2Root = loader.load();
+    @FXML
+    private PasswordField passwordField; // Password input
 
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    @FXML
+    private ChoiceBox<String> preferredBankChoiceBox; // Preferred Bank Selection
 
-                stage.setScene(new Scene(registerScreen2Root));
-                stage.show();
+    @FXML
+    private Label messageLabel; // Message display label
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            showAlert("Invalid Input", "Please enter a valid Full Name and TCKN.");
+    private final AuthService authService = new AuthService();
+
+    @FXML
+    public void initialize() {
+        if (preferredBankChoiceBox != null) {
+            preferredBankChoiceBox.getItems().addAll("Garanti BBVA", "Fibabanka", "İş Bankası");
         }
     }
-    private boolean validateFullName(String fullName) {
-        return fullName.matches("[a-zA-Z\\s]+") && !fullName.isBlank();
-    }
-    private boolean validateTCKN(String tckn) {
-        return tckn.matches("\\d{11}");
-    }
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-    @FXML
-    private void handlePreviousButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
-            Parent loginRoot = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(loginRoot));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private TextField preferredBankField;
-    @FXML
-    private TextField passwordField;
 
     @FXML
     private void handleCompleteRegistrationClick(ActionEvent event) {
-        String preferredBank = preferredBankField.getText().trim();
-        String password = passwordField.getText().trim();
+        String fullname = (this.fullName != null) ? this.fullName : null;
+        String tckn = (this.tckn != null) ? this.tckn : null;
+        String password = (passwordField != null) ? passwordField.getText().trim() : null;
+        String preferredBank = (preferredBankChoiceBox != null) ? preferredBankChoiceBox.getValue() : null;
 
-        // Validate inputs
-        if (validatePreferredBank(preferredBank) && validatePassword(password)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
-                Parent loginScreenRoot = loader.load();
+        // Debug output
+        System.out.println("Full Name: " + fullname);
+        System.out.println("TCKN: " + tckn);
+        System.out.println("Password: " + password);
+        System.out.println("Preferred Bank: " + preferredBank);
 
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Validate input fields
+        if (fullname == null || fullname.isEmpty() || tckn == null || tckn.isEmpty() ||
+                password == null || password.isEmpty() || preferredBank == null || preferredBank.isEmpty()) {
+            showMessage("Please fill in all fields.", "error");
+            return;
+        }
 
-                stage.setScene(new Scene(loginScreenRoot));
-                stage.show();
-                System.out.println("Registration complete. Redirecting to login...");
+        // Validate TCKN and Password
+        if (!validateTCKN(tckn)) {
+            showMessage("Invalid TCKN. Please enter a valid 11-digit TCKN.", "error");
+            return;
+        }
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.err.println("Failed to load login screen!");
-            }
+        if (!validatePassword(password)) {
+            showMessage("Invalid password. Password must be at least 6 characters long, include a number, and an uppercase letter.", "error");
+            return;
+        }
+
+        // Call the registration service
+        if (authService.register(fullname, tckn, password, preferredBank)) {
+            showMessage("Registration successful! Awaiting admin approval.", "success");
+            clearFields();
         } else {
-            showAlert("Invalid Input", "Please enter a valid Preferred Bank and Password.");
+            showMessage("Registration failed. Please try again.", "error");
         }
     }
 
-    // Input validation for Preferred Bank
-    private boolean validatePreferredBank(String bank) {
-        return true; // will be implemented later.
-    }
-
-    // Input validation for Password
-    private boolean validatePassword(String password) {
-        return true;  // will be implemented later.
-    }
 
     @FXML
-    private void handlePreviousButtonClick2(ActionEvent event) {
+    private void handleNextButtonClick(ActionEvent event) {
+        String fullName = fullNameField.getText().trim();
+        String tckn = tcknField.getText().trim();
+
+        // Validate Full Name
+        if (!validateFullName(fullName)) {
+            showMessage("Invalid Full Name. Please enter a valid name.", "error");
+            return;
+        }
+
+        // Validate TCKN
+        if (!validateTCKN(tckn)) {
+            showMessage("Invalid TCKN. Please enter a valid 11-digit TCKN.", "error");
+            return;
+        }
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/registerScreen.fxml"));
-            Parent loginRoot = loader.load();
+            // Load the second registration screen
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/smartbank/client/registerScreen2.fxml"));
+            Parent root = loader.load();
 
+            // Pass data to the next controller
+            RegisterController controller = loader.getController();
+            controller.setFullNameAndTCKN(fullName, tckn);
+
+            // Switch scene
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(loginRoot));
+            stage.setScene(new Scene(root));
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
+            showMessage("Error loading the next screen.", "error");
         }
     }
 
 
+    private String fullName;
+    private String tckn;
 
+    public void setFullNameAndTCKN(String fullName, String tckn) {
+        this.fullName = fullName;
+        this.tckn = tckn;
+        if (fullNameField != null) fullNameField.setText(fullName);
+        if (tcknField != null) tcknField.setText(tckn);
+    }
+
+
+
+    @FXML
+    private void handlePreviousButtonClick(ActionEvent event) {
+        try {
+            Parent loginScreenRoot = FXMLLoader.load(getClass().getResource("/org/smartbank/client/loginScreenUser.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(loginScreenRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showMessage("Error", "Failed to load login screen.");
+        }
+    }
+
+    private void showMessage(String message, String type) {
+        if (messageLabel != null) {
+            messageLabel.setText(message);
+            if ("success".equalsIgnoreCase(type)) {
+                messageLabel.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
+            } else {
+                messageLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+            }
+        } else {
+            System.err.println("Message label is null!");
+        }
+    }
+
+
+    private void clearFields() {
+        if (fullNameField != null) fullNameField.clear();
+        if (tcknField != null) tcknField.clear();
+        if (passwordField != null) passwordField.clear();
+        if (preferredBankChoiceBox != null) preferredBankChoiceBox.getSelectionModel().clearSelection();
+    }
+
+
+    private boolean validateFullName(String fullName) {
+        // Null veya boş kontrolü
+        if (fullName == null || fullName.trim().isEmpty()) {
+            return false;
+        }
+
+        // Türkçe karakterleri destekleyen, bir veya birden fazla kelimeyi kabul eden regex
+        return fullName.matches("^[A-Za-zÇĞİÖŞÜçğıöşü]+( [A-Za-zÇĞİÖŞÜçğıöşü]+)*$");
+    }
+
+    private boolean validateTCKN(String tckn) {
+        return tckn.matches("\\d{11}");
+    }
+
+    private boolean validatePassword(String password) {
+        return password.length() >= 6 && password.matches(".*\\d.*") && password.matches(".*[A-Z].*");
+    }
 
 }
