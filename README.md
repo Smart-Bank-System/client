@@ -45,7 +45,7 @@ The project follows MVC (Model-View-Controller) architecture:
 - Bahra Yılmaz
 - Berk Öztürk
 - Ege Can Bektaş
-- Mehmet Adar Kesr
+- Mehmet Adar Keser
 
 ## Note
 This is a school project created for educational purposes. It simulates basic banking operations and may not include all security features required for a production banking system.
