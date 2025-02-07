@@ -28,12 +28,14 @@ public class HistoryController {
         Label fromLabel = new Label("From: " + transaction.getFromUserId());
 
         // Optional: Add recipient for transfer transactions
-//        if ("transfer".equalsIgnoreCase(transaction.getTransactionType()) && transaction.getToAccount() != null) {
-//            Label toLabel = new Label("To: " + transaction.getToAccount());
-//            transactionBox.getChildren().add(toLabel);
-//        }
+        // if ("transfer".equalsIgnoreCase(transaction.getTransactionType()) &&
+        // transaction.getToAccount() != null) {
+        // Label toLabel = new Label("To: " + transaction.getToAccount());
+        // transactionBox.getChildren().add(toLabel);
+        // }
 
-        transactionBox.getChildren().addAll(transactionIdLabel, transactionTypeLabel, amountLabel, dateLabel, fromLabel);
+        transactionBox.getChildren().addAll(transactionIdLabel, transactionTypeLabel, amountLabel, dateLabel,
+                fromLabel);
 
         historyListView.getItems().add(transactionBox);
     }
@@ -45,6 +47,7 @@ public class HistoryController {
 
     /**
      * Call this method whenever a transaction occurs.
+     * 
      * @param transaction The transaction to add.
      */
     public void onTransactionOccurred(Transaction transaction) {

@@ -77,7 +77,8 @@ public class AdminHomeController {
 
     private HBox createTransactionItem(Transaction transaction) {
         HBox transactionItem = new HBox();
-        transactionItem.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5; -fx-spacing: 10;");
+        transactionItem.setStyle(
+                "-fx-padding: 10; -fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5; -fx-spacing: 10;");
         transactionItem.setPrefHeight(50);
 
         Label amountLabel = new Label(String.format("%.2f TL", transaction.getAmount()));
@@ -86,8 +87,7 @@ public class AdminHomeController {
         TextFlow detailsFlow = new TextFlow(
                 new Text("From: " + transaction.getFromUserId() + "\n"),
                 new Text("To: " + transaction.getToUserId() + "\n"),
-                new Text("Date: " + transaction.getDate())
-        );
+                new Text("Date: " + transaction.getDate()));
         detailsFlow.setTextAlignment(TextAlignment.LEFT);
         detailsFlow.setStyle("-fx-font-size: 14px;");
 
@@ -97,17 +97,18 @@ public class AdminHomeController {
 
     private HBox createRequestItem(User user) {
         HBox requestItem = new HBox();
-        requestItem.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5; -fx-spacing: 10;");
+        requestItem.setStyle(
+                "-fx-padding: 10; -fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 5; -fx-background-radius: 5; -fx-spacing: 10;");
         requestItem.setPrefHeight(100);
 
         Label userDetailsLabel = new Label(
                 String.format("User ID: %d\nTCKN: %s\nFull Name: %s\nAccount Number: %s",
-                        user.getUserId(), user.getTckn(), user.getFullname(), user.getAccountNumber())
-        );
+                        user.getUserId(), user.getTckn(), user.getFullname(), user.getAccountNumber()));
         userDetailsLabel.setStyle("-fx-font-size: 14px;");
 
         Button approveButton = new Button("Approve");
-        approveButton.setStyle("-fx-background-color: green; -fx-text-fill: white; -fx-border-radius: 5; -fx-padding: 5;");
+        approveButton
+                .setStyle("-fx-background-color: green; -fx-text-fill: white; -fx-border-radius: 5; -fx-padding: 5;");
         approveButton.setOnAction(e -> handleApproveRequest(user));
 
         Button denyButton = new Button("Deny");
